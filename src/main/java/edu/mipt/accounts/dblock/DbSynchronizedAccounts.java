@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DbSynchronizedAccounts implements Accounts {
-    private final DbAccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @Override
     @Transactional

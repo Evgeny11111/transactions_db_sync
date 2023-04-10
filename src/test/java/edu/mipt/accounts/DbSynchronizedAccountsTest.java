@@ -1,7 +1,7 @@
 package edu.mipt.accounts;
 
 import edu.mipt.accounts.dblock.Account;
-import edu.mipt.accounts.dblock.DbAccountRepository;
+import edu.mipt.accounts.dblock.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DbSynchronizedAccountsTest {
 
     @Autowired
-    private DbAccountRepository repository;
+    private AccountRepository repository;
     @Autowired
     private Accounts accounts;
 
