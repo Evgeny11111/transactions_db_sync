@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.Lock;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    @Lock(LockModeType.PESSIMISTIC_READ)
     Account findById(long id);
 }
