@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.List;
 public class DbSynchronizedAccounts implements Accounts {
     private final AccountRepository accountRepository;
     @Override
-    @Transactional(readOnly = true)
-    @Retryable
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Retryable(maxAttempts = 20)
     public void transfer(long fromAccountId, long toAccountId, long amount) {
         var fromAccount = accountRepository.findById(fromAccountId);
         var toAccount = accountRepository.findById(toAccountId);
