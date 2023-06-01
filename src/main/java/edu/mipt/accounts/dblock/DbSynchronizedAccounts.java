@@ -21,9 +21,7 @@ public class DbSynchronizedAccounts implements Accounts {
         var toAccount = accountRepository.findById(toAccountId);
 
         var transaction = new Command(accountRepository, fromAccount, toAccount, amount);
-        var lock = new Lock();
-
-        lock.execute(fromAccount,toAccount,transaction);
+        transaction.doTransfer();
     }
 
 }
